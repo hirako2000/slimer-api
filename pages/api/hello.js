@@ -25,7 +25,7 @@ export default (req, res) => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(postData),
-      'Authorization': 'token xxxxxx',
+      'Authorization': `token ${TRAVIS_TOKEN}`,
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Travis-API-Version': '3',
