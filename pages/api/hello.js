@@ -47,7 +47,7 @@ export default (req, res) => {
   });
 
   // Write data to request body
-  const postData = {
+  const postData = "{
    "request": {
    "message": "Override the commit message: this is an api request",
    "branch":"master",
@@ -60,8 +60,8 @@ export default (req, res) => {
        "DOCKER_USERNAME": dockerusername
      }
     }
-  }}
-  req.write(JSON.stringify(postData));
+  }}";
+  req.write(postData);
   req.end();
   
   res.statusCode = 200
