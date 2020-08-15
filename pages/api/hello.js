@@ -17,7 +17,7 @@ export default (req, res) => {
   var dockerpassword = req.query.dockerpassword
   var dockerusername = srcuser || req.query.dockerpassword
   
-  const postData = "{
+  const postBody = {
    'request': {
        'message': 'Override the commit message: this is an api request',
        'branch': 'master',
@@ -31,7 +31,9 @@ export default (req, res) => {
           }
        }
     }
-  }";
+  };
+    
+  const postData = JSON.stringify(postBody);
   
   const options = {
     hostname: 'api.travis-ci.com',
