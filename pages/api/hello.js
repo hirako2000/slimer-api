@@ -1,44 +1,70 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const USER = process.env.USER;
 const PASS = process.env.PASS;
-const REPO = 'github.com/' + USER + '/slimer';
- 
-const fs = require('fs')
-const git = require('simple-git');
-const remote = `https://${USER}:${PASS}@${REPO}`;
+
+const Travis = require('travis-ci');
+var travis = new Travis({
+    version: '2.0.0'
+});
+
+const http = require('http');
 
 export default (req, res) => {
   var user = req.query.user
   var srcimage = req.query.srcimage
   var dstimage = req.query.dstimage
   var srcuser = req.query.srcuser
+  var dockerpassword = req.query.dockerpassword
+  var dockerusername = srcuser || req.query.dockerpassword
   
-  git().silent(true)
-  .clone(remote)
-  .then(() => {
-    console.log("creating branch")
-    git().branch(dstimage)
-    .then(() => {
-      
-      
-    fs.readFile('docker-push.sh', 'utf8', function (err,data) {
-      if (err) {
-        return console.log(err);
-      }
-      var result = data.replace(/$DOCKER_USERNAME/g, req.query.dockerusername);
-      result = data.replace(/$DOCKER_PASSWORD/g, req.query.dockerpassword);
-      result = data.replace(/$SRC_USER/g, srcuser);
-      result = data.replace(/$SRC_IMAGE/g, srcimage);
-      result = data.replace(/$DST_IMAGE/g, dstimage);
-      
-      fs.writeFile('docker-push.sh', result, 'utf8', function (err) {
-         if (err) return console.log(err);
-      });
+  const options = {
+    hostname: 'api.travis-ci.com',
+    port: 443,
+    path: '/repo/hirako2000/slimer/requests',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': Buffer.byteLength(postData),
+      'Authorization': 'token xxxxxx',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Travis-API-Version': '3',
+    }
+  };
+ 
+  const req = http.request(options, (res) => {
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
+      //console.log(`BODY: ${chunk}`);
     });
-    git().push()
-    })
-  })
-  .catch((err) => console.error('failed: ', err));
+    res.on('end', () => {
+      //console.log('No more data in response.');
+    });
+  });
+
+  req.on('error', (e) => {
+    console.error(`problem with request: ${e.message}`);
+  });
+
+  // Write data to request body
+  const postData = '{
+   "request": {
+   "message": "Override the commit message: this is an api request",
+   "branch":"master",
+   "merge_mode": "deep_merge",
+   "config": {
+     "env": {
+       "SRC_USER": srcuser,
+       "SRC_IMAGE": srcimage,
+       "DST_IMAGE": dstimage,
+       "DOCKER_PASSWORD": dockerpassword,
+       "DOCKER_USERNAME": dockerusername
+     },
+     "script": "echo FOO"
+    }
+  }}'
+  req.write(postData);
+  req.end();
   
   res.statusCode = 200
   res.json({ result: 'Triggered slimer process from ' + srcuser + '/' + srcimage + ' to ' + user + '/' + dstimage  })
