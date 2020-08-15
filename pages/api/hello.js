@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const USER = process.env.USER;
 const PASS = process.env.PASS;
-const REPO = 'github.com/' + process.env.USER' + '/slimer';
+const REPO = 'github.com/' + USER + '/slimer';
  
 const fs = require('fs')
 const git = require('simple-git');
