@@ -17,6 +17,21 @@ export default (req, res) => {
   var dockerpassword = req.query.dockerpassword
   var dockerusername = srcuser || req.query.dockerpassword
   
+  const postData = "{
+   'request': {
+   'message': 'Override the commit message: this is an api request',
+   'branch': 'master',
+   'config': {
+     'env': {
+       'SRC_USER': srcuser,
+       'SRC_IMAGE': srcimage,
+       'DST_IMAGE': dstimage,
+       'DOCKER_PASSWORD': dockerpassword,
+       'DOCKER_USERNAME': dockerusername
+     }
+    }
+  }}";
+  
   const options = {
     hostname: 'api.travis-ci.com',
     port: 443,
@@ -47,20 +62,7 @@ export default (req, res) => {
   });
 
   // Write data to request body
-  const postData = "{
-   "request": {
-   "message": "Override the commit message: this is an api request",
-   "branch":"master",
-   "config": {
-     "env": {
-       "SRC_USER": srcuser,
-       "SRC_IMAGE": srcimage,
-       "DST_IMAGE": dstimage,
-       "DOCKER_PASSWORD": dockerpassword,
-       "DOCKER_USERNAME": dockerusername
-     }
-    }
-  }}";
+  
   req.write(postData);
   req.end();
   
