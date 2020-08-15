@@ -47,11 +47,10 @@ export default (req, res) => {
   });
 
   // Write data to request body
-  const postData = '{
+  const postData = {
    "request": {
    "message": "Override the commit message: this is an api request",
    "branch":"master",
-   "merge_mode": "deep_merge",
    "config": {
      "env": {
        "SRC_USER": srcuser,
@@ -59,11 +58,10 @@ export default (req, res) => {
        "DST_IMAGE": dstimage,
        "DOCKER_PASSWORD": dockerpassword,
        "DOCKER_USERNAME": dockerusername
-     },
-     "script": "echo FOO"
+     }
     }
-  }}'
-  req.write(postData);
+  }}
+  req.write(JSON.stringify(postData));
   req.end();
   
   res.statusCode = 200
