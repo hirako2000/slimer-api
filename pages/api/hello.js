@@ -19,18 +19,19 @@ export default (req, res) => {
   
   const postData = "{
    'request': {
-   'message': 'Override the commit message: this is an api request',
-   'branch': 'master',
-   'config': {
-     'env': {
-       'SRC_USER': srcuser,
-       'SRC_IMAGE': srcimage,
-       'DST_IMAGE': dstimage,
-       'DOCKER_PASSWORD': dockerpassword,
-       'DOCKER_USERNAME': dockerusername
-     }
+       'message': 'Override the commit message: this is an api request',
+       'branch': 'master',
+       'config': {
+         'env': {
+           'SRC_USER': srcuser,
+           'SRC_IMAGE': srcimage,
+           'DST_IMAGE': dstimage,
+           'DOCKER_PASSWORD': dockerpassword,
+           'DOCKER_USERNAME': dockerusername
+          }
+       }
     }
-  }}";
+  }";
   
   const options = {
     hostname: 'api.travis-ci.com',
