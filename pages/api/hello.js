@@ -42,4 +42,4 @@ export default (req, res) => {
   
   res.statusCode = 200
   res.json({ result: 'Triggered slimer process from ' + srcuser + '/' + srcimage + ' to ' + user + '/' + dstimage  })
-}
+};
