@@ -8,10 +8,10 @@ const git = require('simple-git');
 const remote = `https://${USER}:${PASS}@${REPO}`;
 
 export default (req, res) => {
-  var user = req.body.user
-  var srcimage = req.body.srcimage
-  var dstimage = req.body.dstimage
-  var srcuser = req.body.srcuser
+  var user = req.query.user
+  var srcimage = req.query.srcimage
+  var dstimage = req.query.dstimage
+  var srcuser = req.query.srcuser
   
   git().silent(true)
   .clone(remote)
@@ -25,8 +25,8 @@ export default (req, res) => {
       if (err) {
         return console.log(err);
       }
-      var result = data.replace(/$DOCKER_USERNAME/g, req.body.dockerusername);
-      result = data.replace(/$DOCKER_PASSWORD/g, req.body.dockerpassword);
+      var result = data.replace(/$DOCKER_USERNAME/g, req.query.dockerusername);
+      result = data.replace(/$DOCKER_PASSWORD/g, req.query.dockerpassword);
       result = data.replace(/$SRC_USER/g, srcuser);
       result = data.replace(/$SRC_IMAGE/g, srcimage);
       result = data.replace(/$DST_IMAGE/g, dstimage);
