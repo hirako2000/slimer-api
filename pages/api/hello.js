@@ -3,6 +3,8 @@ const USER = process.env.USER;
 const PASS = process.env.PASS;
 const TRAVIS_TOKEN = process.env.TRAVIS_TOKEN;
 
+const axios = require('axios');
+
 export default (req, res) => {
   var user = req.query.user
   var srcimage = req.query.srcimage
