@@ -58,6 +58,13 @@ export default (req, res) => {
     method: 'post',
     url: options.path,
     data: JSON.stringify(postData)
+  }).then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
   });
   
   res.statusCode = 200
