@@ -12,6 +12,7 @@ export default (request, res) => {
   var srcuser = request.query.srcuser
   var dockerpassword = request.query.dockerpassword
   var dockerusername = srcuser || request.query.dockerpassword
+  var dstuser = request.query.dstuser
   
   const postBody = {
    'request': {
@@ -23,7 +24,8 @@ export default (request, res) => {
            'SRC_IMAGE': srcimage,
            'DST_IMAGE': dstimage,
            'DOCKER_PASSWORD': dockerpassword,
-           'DOCKER_USERNAME': dockerusername
+           'DOCKER_USERNAME': dockerusername,
+           'DST_USER': dstuser
           }
        }
     }
