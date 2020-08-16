@@ -9,13 +9,13 @@ var travis = new Travis({
 
 const http = require('http');
 
-export default (req, res) => {
-  var user = req.query.user
-  var srcimage = req.query.srcimage
-  var dstimage = req.query.dstimage
-  var srcuser = req.query.srcuser
-  var dockerpassword = req.query.dockerpassword
-  var dockerusername = srcuser || req.query.dockerpassword
+export default (request, res) => {
+  var user = request.query.user
+  var srcimage = request.query.srcimage
+  var dstimage = request.query.dstimage
+  var srcuser = request.query.srcuser
+  var dockerpassword = request.query.dockerpassword
+  var dockerusername = srcuser || request.query.dockerpassword
   
   // body
   const postBody = {
