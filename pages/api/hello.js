@@ -36,7 +36,7 @@ export default (request, res) => {
   const options = {
     hostname: 'api.travis-ci.com',
     port: 443,
-    path: '/repo/hirako2000/slimer/requests',
+    path: '/repo/github/hirako2000/slimer/requests',
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
