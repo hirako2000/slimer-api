@@ -14,7 +14,7 @@ export default (request, res) => {
   var dockerusername = request.query.dockerusername
   var dstuser = request.query.dstuser
   
-  const postBody = {
+  const postData = {
    'request': {
        'message': 'Override the commit message: this is an api request',
        'branch': 'master',
@@ -30,8 +30,6 @@ export default (request, res) => {
        }
     }
   };
-    
-  const postData = JSON.stringify(postBody);
   
   const options = {
     hostname: 'api.travis-ci.com',
@@ -47,27 +45,18 @@ export default (request, res) => {
       'Travis-API-Version': '3',
     }
   };
- 
-  const req = http.request(options, (res) => {
-    console.log('request construction')
-    res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`);
-    });
-    res.on('end', () => {
-      console.log('No more data in response.');
-    });
-  });
-
-  req.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
-  });
-
-  // Write data to request body
   
-  console.log('about to write postData');
-  req.write(postData);
-  req.end();
+  const instance = axios.create({
+    baseURL: 'https://' + options.hostname,
+    timeout: 1000,
+    headers: options.headers
+  });
+ 
+  axios({
+    method: 'post',
+    url: options.path,
+    data: postData
+  });
   
   res.statusCode = 200
   res.json({ result: 'Triggered slimer process from ' + srcuser + '/' + srcimage + ' to ' + dstuser + '/' + dstimage  })
