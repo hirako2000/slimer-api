@@ -28,7 +28,7 @@ export default (req, res) => {
            DOCKER_PASSWORD: dockerpassword,
            DOCKER_USERNAME: dockerusername,
            DST_USER: dstuser
-          }
+         }
        }
     }
   };
