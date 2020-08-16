@@ -5,14 +5,14 @@ const TRAVIS_TOKEN = process.env.TRAVIS_TOKEN;
 
 const http = require('https');
 
-export default (request, res) => {
-  var user = request.query.user
-  var srcimage = request.query.srcimage
-  var dstimage = request.query.dstimage
-  var srcuser = request.query.srcuser
-  var dockerpassword = request.query.dockerpassword
-  var dockerusername = request.query.dockerusername
-  var dstuser = request.query.dstuser
+export default (req, res) => {
+  var user = req.query.user
+  var srcimage = req.query.srcimage
+  var dstimage = req.query.dstimage
+  var srcuser = req.query.srcuser
+  var dockerpassword = req.query.dockerpassword
+  var dockerusername = req.query.dockerusername
+  var dstuser = req.query.dstuser
   
   const postData = {
    'request': {
