@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const USER = process.env.USER;
 const PASS = process.env.PASS;
+const TRAVIS_TOKEN = process.env.TRAVIS_TOKEN;
 
 const Travis = require('travis-ci');
 var travis = new Travis({
