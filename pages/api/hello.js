@@ -4,6 +4,7 @@ const PASS = process.env.PASS;
 const TRAVIS_TOKEN = process.env.TRAVIS_TOKEN;
 
 const axios = require('axios');
+require('axios-debug-log')
 
 export default (req, res) => {
   var user = req.query.user
