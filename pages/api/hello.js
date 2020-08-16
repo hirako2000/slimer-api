@@ -14,6 +14,8 @@ export default (req, res) => {
   var dockerusername = req.query.dockerusername
   var dstuser = req.query.dstuser
   
+  console.log("Received query: " + JSON.stringify(postData));
+  
   const postData = {
    'request': {
        'message': 'Override the commit message: this is an api request',
