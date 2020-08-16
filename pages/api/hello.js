@@ -53,8 +53,9 @@ export default (req, res) => {
     timeout: 1000,
     headers: options.headers
   });
+
  
-  axios({
+  instance({
     method: 'post',
     url: options.path,
     data: JSON.stringify(postData)
