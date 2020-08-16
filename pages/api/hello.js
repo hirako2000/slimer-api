@@ -3,7 +3,7 @@ const USER = process.env.USER;
 const PASS = process.env.PASS;
 const TRAVIS_TOKEN = process.env.TRAVIS_TOKEN;
 
-const http = require('http');
+const http = require('https');
 
 export default (request, res) => {
   var user = request.query.user
