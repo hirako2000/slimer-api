@@ -17,17 +17,17 @@ export default (req, res) => {
   console.log("Received query: " + JSON.stringify(req.query));
   
   const postData = {
-   request: {
-       message: 'Override the commit message: this is an api request',
-       branch: 'master',
-       config: {
-         env: {
-           SRC_USER: srcuser,
-           SRC_IMAGE: srcimage,
-           DST_IMAGE: dstimage,
-           DOCKER_PASSWORD: dockerpassword,
-           DOCKER_USERNAME: dockerusername,
-           DST_USER: dstuser
+   'request': {
+       'message': 'Override the commit message: this is an api request',
+       'branch': 'master',
+       'config': {
+         'env': {
+           'SRC_USER': srcuser,
+           'SRC_IMAGE': srcimage,
+           'DST_IMAGE': dstimage,
+           'DOCKER_PASSWORD': dockerpassword,
+           'DOCKER_USERNAME': dockerusername,
+           'DST_USER': dstuser
          }
        }
     }
