@@ -11,7 +11,7 @@ export default (request, res) => {
   var dstimage = request.query.dstimage
   var srcuser = request.query.srcuser
   var dockerpassword = request.query.dockerpassword
-  var dockerusername = srcuser || request.query.dockerpassword
+  var dockerusername = request.query.dockerusername
   var dstuser = request.query.dstuser
   
   const postBody = {
@@ -68,5 +68,5 @@ export default (request, res) => {
   req.end();
   
   res.statusCode = 200
-  res.json({ result: 'Triggered slimer process from ' + srcuser + '/' + srcimage + ' to ' + user + '/' + dstimage  })
+  res.json({ result: 'Triggered slimer process from ' + srcuser + '/' + srcimage + ' to ' + dstuser + '/' + dstimage  })
 };
