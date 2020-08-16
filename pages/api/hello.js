@@ -14,7 +14,7 @@ export default (req, res) => {
   var dockerusername = req.query.dockerusername
   var dstuser = req.query.dstuser
   
-  console.log("Received query: " + JSON.stringify(postData));
+  console.log("Received query: " + JSON.stringify(req.query));
   
   const postData = {
    'request': {
