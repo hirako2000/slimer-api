@@ -59,7 +59,7 @@ export default (req, res) => {
   instance({
     method: 'post',
     url: options.path,
-    data: JSON.stringify(postData)
+    data: postData
   }).then(function (response) {
     // handle success
     console.log(response);
