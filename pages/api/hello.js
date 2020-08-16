@@ -55,7 +55,7 @@ export default (request, res) => {
   axios({
     method: 'post',
     url: options.path,
-    data: postData
+    data: JSON.stringify(postData)
   });
   
   res.statusCode = 200
