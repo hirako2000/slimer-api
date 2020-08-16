@@ -13,7 +13,6 @@ export default (request, res) => {
   var dockerpassword = request.query.dockerpassword
   var dockerusername = srcuser || request.query.dockerpassword
   
-  // body
   const postBody = {
    'request': {
        'message': 'Override the commit message: this is an api request',
