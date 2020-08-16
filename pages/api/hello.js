@@ -3,11 +3,6 @@ const USER = process.env.USER;
 const PASS = process.env.PASS;
 const TRAVIS_TOKEN = process.env.TRAVIS_TOKEN;
 
-const Travis = require('travis-ci');
-var travis = new Travis({
-    version: '2.0.0'
-});
-
 const http = require('http');
 
 export default (request, res) => {
