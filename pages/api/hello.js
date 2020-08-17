@@ -72,8 +72,7 @@ export default (req, res) => {
   });
 
  
-  instance.post(options.path, postData
-  }).then(function (response) {
+  instance.post(options.path, postData).then(function (response) {
     // handle success
     console.log(response);
   })
