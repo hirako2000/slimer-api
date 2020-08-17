@@ -66,12 +66,13 @@ export default (req, res) => {
   
   const instance = axios.create({
     baseURL: 'https://' + options.hostname,
+    port: options.port,
     timeout: 1000,
     headers: options.headers
   });
 
  
-  instance({
+  instance.request({
     method: 'post',
     url: options.path,
     data: postData
