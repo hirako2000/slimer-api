@@ -75,6 +75,7 @@ export default (req, res) => {
   instance.request({
     method: 'post',
     url: options.path,
+    baseURL: options.hostname + options.path,
     data: postData
   }).then(function (response) {
     // handle success
