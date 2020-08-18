@@ -75,12 +75,14 @@ export default (req, res) => {
   instance.post(options.path, postData).then(function (response) {
     // handle success
     console.log("Post response:" + response);
+    res.statusCode = 200
+    res.json({ result: 'Triggered slimer process from ' + srcuser + '/' + srcimage + ' to ' + dstuser + '/' + dstimage  })
   })
   .catch(function (error) {
     // handle error
     console.log("Post error:" + error);
+    res.statusCode = 500
+    res.json({ result: 'Error' })
   });
   
-  res.statusCode = 200
-  res.json({ result: 'Triggered slimer process from ' + srcuser + '/' + srcimage + ' to ' + dstuser + '/' + dstimage  })
 };
