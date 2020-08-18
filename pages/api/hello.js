@@ -65,14 +65,13 @@ export default (req, res) => {
   };
   
   const instance = axios.create({
-    baseURL: 'https://' + options.hostname,
     port: options.port,
     timeout: 1000,
     headers: options.headers
   });
 
  
-  instance.post(options.path, postData).then(function (response) {
+  instance.post(options.hostname + options.path, postData).then(function (response) {
     // handle success
     console.log("Post response:" + response);
     res.statusCode = 200
