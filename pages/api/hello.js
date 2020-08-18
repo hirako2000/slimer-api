@@ -74,11 +74,11 @@ export default (req, res) => {
  
   instance.post(options.path, postData).then(function (response) {
     // handle success
-    console.log(response);
+    console.log("Post response:" + response);
   })
   .catch(function (error) {
     // handle error
-    console.log(error);
+    console.log("Post error:" + error);
   });
   
   res.statusCode = 200
