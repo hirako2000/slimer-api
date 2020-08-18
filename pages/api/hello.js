@@ -50,7 +50,7 @@ export default (req, res) => {
   };
   
   const options = {
-    hostname: 'api.travis-ci.com',
+    hostname: 'https://api.travis-ci.com',
     port: 443,
     path: '/repo/hirako2000/slimer/requests',
     method: 'POST',
@@ -65,6 +65,7 @@ export default (req, res) => {
   };
   
   const instance = axios.create({
+    baseURL: 'https://api.travis-ci.com',
     port: options.port,
     timeout: 1000,
     headers: options.headers
